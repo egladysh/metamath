@@ -31,7 +31,7 @@ namespace metamath
 		template<typename V>
 		V operator()(V v) const
 		{
-			return sin_f()(e_(v));
+			return sin_f{}(e_(v));
 		}
 
 		template<typename Os>
@@ -55,7 +55,7 @@ namespace metamath
 		template<typename V>
 		V operator()(V v) const
 		{
-			return cos_f()(e_(v));
+			return cos_f{}(e_(v));
 		}
 
 		template<typename Os>

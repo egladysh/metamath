@@ -91,12 +91,16 @@ namespace metamath
 		return is_zero<T>(std::abs(v - unity<T>::v));
 	}
 
-	// checks
+	// checks for exp<>
 	//
-	template<typename T>
-	struct is_zero_t
+	template<typename ...T> struct is_zero_t;
+
+			//allow exp<> types only
+	template<typename ...T>
+	struct is_zero_t< exp<T...> >
 	{
-		constexpr bool operator()(const T&)
+		typedef exp<T...> exp_t;
+		static constexpr bool check(const exp_t&)
 		{
 			return false;
 		}
@@ -105,21 +109,26 @@ namespace metamath
 	struct is_zero_t<exp<T, empty, constant>>
 	{
 		typedef exp<T, empty, constant> exp_t;
-		constexpr bool operator()(const exp_t& e)
+		static constexpr bool check(const exp_t& e)
 		{
 			return e.z_;
 		}
 	};
 	template<typename T>
-	constexpr bool iszero(const T& e)
+	constexpr bool is_zero_const(const T& e)
 	{
-		return is_zero_t<T>()(e);
+		return is_zero_t<T>::check(e);
 	}
 	
-	template<typename T>
-	struct is_unity_t
+
+			//allow exp<> types only
+	template<typename ...T> struct is_unity_t;
+
+	template<typename ...T>
+	struct is_unity_t<exp<T...>>
 	{
-		constexpr bool operator()(const T&)
+		typedef exp<T...> exp_t;
+		static constexpr bool check(const exp_t&)
 		{
 			return false;
 		}
@@ -128,15 +137,15 @@ namespace metamath
 	struct is_unity_t<exp<T, empty, constant>>
 	{
 		typedef exp<T, empty, constant> exp_t;
-		constexpr bool operator()(const exp_t& e)
+		static constexpr bool check(const exp_t& e)
 		{
 			return e.u_;
 		}
 	};
 	template<typename T>
-	constexpr bool isunity(const T& e)
+	constexpr bool is_unity_const(const T& e)
 	{
-		return is_unity_t<T>()(e);
+		return is_unity_t<T>::check(e);
 	}
 
 	// expression specializations
@@ -158,7 +167,7 @@ namespace metamath
 		}
 
 		template<typename V>
-		constexpr V operator()(V v) const
+		constexpr T operator()(V v) const
 		{
 			return v_;
 		}
@@ -201,9 +210,9 @@ namespace metamath
 		E2 e2_;
 
 		template<typename V>
-		constexpr decltype(e1_(V()) / e2_(V())) operator()(V v) const
+		constexpr decltype(e1_(V{}) / e2_(V{})) operator()(V v) const
 		{
-			if (isunity(e2_)) {
+			if (is_unity_const(e2_)) {
 				return e1_(v);
 			}
 			return e1_(v) / e2_(v);
@@ -212,7 +221,7 @@ namespace metamath
 		template<typename Os>
 		Os& print(Os& os) const
 		{
-			if (isunity(e2_)) {
+			if (is_unity_const(e2_)) {
 				os << e1_;
 				return os;
 			}
@@ -228,15 +237,15 @@ namespace metamath
 		E2 e2_;
 
 		template<typename V>
-		constexpr decltype(e1_(V()) * e2_(V())) operator()(V v) const
+		constexpr decltype(e1_(V{}) * e2_(V{})) operator()(V v) const
 		{
-			if (iszero(e1_) || iszero(e2_)) {
+			if (is_zero_const(e1_) || is_zero_const(e2_)) {
 				return zero<V>::v;
 			}
-			if (isunity(e1_)) {
+			if (is_unity_const(e1_)) {
 				return e2_(v);
 			}
-			if (isunity(e2_)) {
+			if (is_unity_const(e2_)) {
 				return e1_(v);
 			}
 			return e1_(v) * e2_(v);
@@ -245,11 +254,11 @@ namespace metamath
 		template<typename Os>
 		Os& print(Os& os) const
 		{
-			if (isunity(e1_)) {
+			if (is_unity_const(e1_)) {
 				os << e2_;
 				return os;
 			}
-			if (isunity(e2_)) {
+			if (is_unity_const(e2_)) {
 				os << e1_;
 				return os;
 			}
@@ -266,7 +275,7 @@ namespace metamath
 
 		template<typename V>
 			//must use decltype in case adding another return
-		constexpr decltype(e1_(V()) + e2_(V())) operator()(V v) const
+		constexpr decltype(e1_(V{}) + e2_(V{})) operator()(V v) const
 		{
 			return e1_(v) + e2_(v);
 		}
@@ -274,11 +283,11 @@ namespace metamath
 		template<typename Os>
 		Os& print(Os& os) const
 		{
-			if (iszero(e1_)) {
+			if (is_zero_const(e1_)) {
 				os << e2_;
 				return os;
 			}
-			if (iszero(e2_)) {
+			if (is_zero_const(e2_)) {
 				os << e1_;
 				return os;
 			}
@@ -295,7 +304,7 @@ namespace metamath
 
 		template<typename V>
 			//must use decltype in case adding another return
-		constexpr decltype(e1_(V()) - e2_(V())) operator()(V v) const
+		constexpr decltype(e1_(V{}) - e2_(V{})) operator()(V v) const
 		{
 			return e1_(v) - e2_(v);
 		}
@@ -303,11 +312,11 @@ namespace metamath
 		template<typename Os>
 		Os& print(Os& os) const
 		{
-			if (iszero(e1_)) {
+			if (is_zero_const(e1_)) {
 				os << e2_;
 				return os;
 			}
-			if (iszero(e2_)) {
+			if (is_zero_const(e2_)) {
 				os << "-" << e1_;
 				return os;
 			}

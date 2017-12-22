@@ -17,7 +17,7 @@ namespace metamath
 			auto operator()(const fexp& e)
 			{
 				//function definition must supply its derivative
-				return e.derivative() * drv<E>()(e.e_);
+				return e.derivative() * drv<E>{}(e.e_);
 			}
 		};
 
@@ -53,7 +53,7 @@ namespace metamath
 
 			auto operator()(const mexp& e)
 			{
-				return drv<E1>()(e.e1_) * e.e2_ + e.e1_ * drv<E2>()(e.e2_);
+				return drv<E1>{}(e.e1_) * e.e2_ + e.e1_ * drv<E2>{}(e.e2_);
 			}
 		};
 
@@ -65,7 +65,7 @@ namespace metamath
 
 			auto operator()(const dexp& e)
 			{
-				return (drv<E1>()(e.e1_) * e.e2_ - e.e1_ * drv<E2>()(e.e2_)) / (e.e2_ * e.e2_);
+				return (drv<E1>{}(e.e1_) * e.e2_ - e.e1_ * drv<E2>{}(e.e2_)) / (e.e2_ * e.e2_);
 			}
 		};
 
@@ -77,7 +77,7 @@ namespace metamath
 
 			auto operator()(const pexp& e)
 			{
-				return drv<E1>()(e.e1_) + drv<E2>()(e.e2_);
+				return drv<E1>{}(e.e1_) + drv<E2>{}(e.e2_);
 			}
 		};
 	template<typename E1, typename E2>
@@ -87,7 +87,7 @@ namespace metamath
 
 			auto operator()(const mexp& e)
 			{
-				return drv<E1>()(e.e1_) - drv<E2>()(e.e2_);
+				return drv<E1>{}(e.e1_) - drv<E2>{}(e.e2_);
 			}
 		};
 
