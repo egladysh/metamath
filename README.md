@@ -63,17 +63,17 @@ C++14 or later
 * Suppose you cloned to [HOME]/work/metamath
 * For out-of-source, create a build folder in [HOME]/work, and go there.
 
-	$mkdir build
-	$cd build
+		$mkdir build
+		$cd build
 
 * Run cmake (make sure the build Release for speed).
 
-	$cmake ../metamath
+		$cmake ../metamath
 
 * Build it.     
 
-	$make
+		$make
 
 * You can now run a sample (the sample source is in metamath/sample/)
 
-	$./sample/mms
+		$./sample/mms
