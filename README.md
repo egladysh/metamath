@@ -4,7 +4,7 @@ Meta mathematic
 metamath is a tiny header-only library. It can be used for symbolic calculations on single-variable functions.
 The library could be useful for custom DSL's in C++.
 
-It includes derivative calculations. The func.h header contains definitions for Sin/Cos functions. 
+It includes derivative calculations. The func.h header contains definitions for Sin/Cos functions, more to come...
 
 Example:
 
