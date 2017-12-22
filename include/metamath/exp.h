@@ -160,9 +160,9 @@ namespace metamath
 		bool u_; //indicates unity
 
 		exp(T v) 
-			:v_(v) 
-			,z_(is_zero(v))
-			,u_(is_unity(v))
+			:v_{v} 
+			,z_{is_zero(v)}
+			,u_{is_unity(v)}
 		{
 		}
 
