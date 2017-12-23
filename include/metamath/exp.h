@@ -225,7 +225,7 @@ namespace metamath
 				os << e1_;
 				return os;
 			}
-			os << "(" << e1_ << ")" << " / " << "(" << e2_ << ")";
+			os << "((" << e1_ << ")" << " / " << "(" << e2_ << "))";
 			return os;
 		}
 	};
@@ -389,6 +389,5 @@ namespace metamath
 	static constexpr var<domain> x;
 
 }
-
 
 #endif

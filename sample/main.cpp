@@ -83,5 +83,83 @@ int main()
 		std::cout << "======" << std::endl << std::endl;
 	}
 
+	{
+		std::cout << "======" << std::endl;
+		auto f =  Sqrt(x);
+
+		std::cout << "f(x) = " << f << std::endl;
+		std::cout << "f(4) = " << f(4) << std::endl;
+		std::cout << "f(6) = " << f(6) << std::endl;
+		std::cout << "------" << std::endl;
+
+		auto df = derivative(f);
+		std::cout << "f`(x) = " << df << std::endl;
+		std::cout << "f`(4) = " << df(4) << std::endl;
+		std::cout << "f`(6) = " << df(6) << std::endl;
+		std::cout << "======" << std::endl << std::endl;
+	}
+
+	{
+		std::cout << "======" << std::endl;
+		auto f =  Pow<2>( 3 * x );
+
+		std::cout << "f(x) = " << f << std::endl;
+		std::cout << "f(4) = " << f(4) << std::endl;
+		std::cout << "f(6) = " << f(6) << std::endl;
+		std::cout << "------" << std::endl;
+
+		auto df = derivative(f);
+		std::cout << "f`(x) = " << df << std::endl;
+		std::cout << "f`(4) = " << df(4) << std::endl;
+		std::cout << "f`(6) = " << df(6) << std::endl;
+		std::cout << "======" << std::endl << std::endl;
+	}
+
+	{
+		std::cout << "======" << std::endl;
+		auto f =  Exp( 3 * x );
+
+		std::cout << "f(x) = " << f << std::endl;
+		std::cout << "f(4) = " << f(4) << std::endl;
+		std::cout << "f(6) = " << f(6) << std::endl;
+		std::cout << "------" << std::endl;
+
+		auto df = derivative(f);
+		std::cout << "f`(x) = " << df << std::endl;
+		std::cout << "f`(4) = " << df(4) << std::endl;
+		std::cout << "f`(6) = " << df(6) << std::endl;
+		std::cout << "======" << std::endl << std::endl;
+	}
+
+	{
+		std::cout << "======" << std::endl;
+		auto f =  Ln( 3 * x );
+
+		std::cout << "f(x) = " << f << std::endl;
+		std::cout << "f(4) = " << f(4) << std::endl;
+		std::cout << "f(6) = " << f(6) << std::endl;
+		std::cout << "------" << std::endl;
+
+		auto df = derivative(f);
+		std::cout << "f`(x) = " << df << std::endl;
+		std::cout << "f`(4) = " << df(4) << std::endl;
+		std::cout << "f`(6) = " << df(6) << std::endl;
+		std::cout << "======" << std::endl << std::endl;
+	}
+	{
+		std::cout << "======" << std::endl;
+		auto f =  Abs( 3 * x );
+
+		std::cout << "f(x) = " << f << std::endl;
+		std::cout << "f(4) = " << f(4) << std::endl;
+		std::cout << "f(6) = " << f(6) << std::endl;
+		std::cout << "------" << std::endl;
+
+		auto df = derivative(f);
+		std::cout << "f`(x) = " << df << std::endl;
+		std::cout << "f`(4) = " << df(4) << std::endl;
+		std::cout << "f`(6) = " << df(6) << std::endl;
+		std::cout << "======" << std::endl << std::endl;
+	}
 	return 0;
 }
