@@ -2,7 +2,7 @@
 Meta mathematic
 
 metamath is a tiny header-only library. It can be used for symbolic computations on single-variable functions, such as dynamic computations of 
-function derivatives. The operator precedence rules are naturally by the compiler. The library could be useful for building custom DSL's in C++.
+function derivatives. The operator precedence rules are naturally handled by the compiler. The library could be useful for building custom DSL's in C++.
 
 func.h contains definitions for some of the cmath functions: Sin/Cos, Ln, Pow, Abs, Sqrt, Exp, more to come...
 Function composition is supported. 
