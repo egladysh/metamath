@@ -298,7 +298,7 @@ namespace metamath
 
 		auto derivative() const
 		{
-			return (e_ - 1) / exp<E, abs_f, func>{e_};
+			return (e_) / (exp<E, abs_f, func>{e_});
 		}
 	};
 

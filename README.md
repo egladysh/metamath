@@ -1,9 +1,20 @@
 # metamath
 Meta mathematic
 
-metamath is a tiny header-only library. It can be used for symbolic computations on single-variable functions, such as function derivatives. The library could be useful for building custom DSL's in C++.
+metamath is a tiny header-only library. It can be used for symbolic computations on single-variable functions, such as dynamic computations of 
+function derivatives. The operator precedence rules are naturally by the compiler. The library could be useful for building custom DSL's in C++.
 
-The func.h header contains definitions for some of the cmath functions: Sin/Cos, Ln, Pow, Abs, Sqrt, Exp, more to come... Following are some examples of functions and their derivatives.
+func.h contains definitions for some of the cmath functions: Sin/Cos, Ln, Pow, Abs, Sqrt, Exp, more to come...
+Function composition is supported. 
+
+	auto f1 = 3 * x;
+	auto f2 = Ln(x);
+	auto f = f1 + f2;
+
+	auto y1 = f(2);
+	auto y2 = f(4);
+
+## Examples of Functions and Derivatives
 
 Example:
 
@@ -168,11 +179,10 @@ C++14 or later
 
 		======
 		f(x) = |3 * x|
-		f(4) = 12
+		f(-4) = 12
 		f(6) = 18
 		------
-		f`(x) = (((3 * x - 1)) / (|3 * x|)) * (0 * x + 3)
-		f`(4) = 2.75
-		f`(6) = 2.83333
+		f`(x) = ((3 * x) / (|3 * x|)) * (0 * x + 3)
+		f`(-4) = -3
+		f`(6) = 3
 		======
-
