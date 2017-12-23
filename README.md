@@ -3,7 +3,7 @@ Meta mathematic
 
 metamath is a tiny header-only library. It can be used for symbolic computations on single-variable functions, such as function derivatives. The library could be useful for building custom DSL's in C++.
 
-The func.h header contains definitions for Sin/Cos functions, more to come... Following are some examples of functions and their derivatives.
+The func.h header contains definitions for some of the cmath functions: Sin/Cos, Ln, Pow, Abs, Sqrt, Exp, more to come... Following are some examples of functions and their derivatives.
 
 Example:
 
@@ -83,10 +83,10 @@ C++14 or later
 		Metamath sample
 		======
 		f(x) = 3 * x * x
-		f(4) = 12
+		f(4) = 48
 		------
 		f`(x) = ((0 * x + 3) * x + 3 * x)
-		f`(4) = 12
+		f`(4) = 24
 		======
 
 		======
@@ -99,20 +99,20 @@ C++14 or later
 		======
 
 		======
-		f(x) = (1) / (x)
+		f(x) = ((1) / (x))
 		f(2) = 0.5
 		f(3) = 0.333333
 		------
-		f`(x) = ((0 * x - 1)) / (x * x)
+		f`(x) = (((0 * x - 1)) / (x * x))
 		f`(2.f) = -0.25
 		======
 
 		======
-		f(x) = (2 * (x + 1)) / (x)
+		f(x) = ((2 * (x + 1)) / (x))
 		f(2) = 3
 		f(3) = 2.66667
 		------
-		f`(x) = (((0 * (x + 1) + 2 * 1) * x - 2 * (x + 1))) / (x * x)
+		f`(x) = ((((0 * (x + 1) + 2 * 1) * x - 2 * (x + 1))) / (x * x))
 		f`(2) = -0.5
 		======
 
@@ -125,3 +125,54 @@ C++14 or later
 		f`(pi) = 8
 		f`(pi/4) = -3.49691e-07
 		======
+
+		======
+		f(x) = sqrt(x)
+		f(4) = 2
+		f(6) = 2.44949
+		------
+		f`(x) = ((1) / (2 * sqrt(x)))
+		f`(4) = 0.25
+		f`(6) = 0.204124
+		======
+
+		======
+		f(x) = (3 * x^2)
+		f(4) = 144
+		f(6) = 324
+		------
+		f`(x) = 2 * (3 * x^1) * (0 * x + 3)
+		f`(4) = 72
+		f`(6) = 108
+		======
+
+		======
+		f(x) = e^(3 * x)
+		f(4) = 162755
+		f(6) = 6.566e+07
+		------
+		f`(x) = e^(3 * x) * (0 * x + 3)
+		f`(4) = 488264
+		f`(6) = 1.9698e+08
+		======
+
+		======
+		f(x) = ln(3 * x)
+		f(4) = 2.48491
+		f(6) = 2.89037
+		------
+		f`(x) = ((1) / (3 * x)) * (0 * x + 3)
+		f`(4) = 0.25
+		f`(6) = 0.166667
+		======
+
+		======
+		f(x) = |3 * x|
+		f(4) = 12
+		f(6) = 18
+		------
+		f`(x) = (((3 * x - 1)) / (|3 * x|)) * (0 * x + 3)
+		f`(4) = 2.75
+		f`(6) = 2.83333
+		======
+
