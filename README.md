@@ -76,11 +76,11 @@ C++14 or later
 		$mkdir build
 		$cd build
 
-* Run cmake (make sure the build Release for speed).
+* Run cmake
 
 		$cmake ../metamath
 
-* Build it.     
+* Build it    
 
 		$make
 
