@@ -49,20 +49,20 @@ namespace metamath
 		};
 
 	template<typename T>
-		struct unity;
+		struct identity;
 
 	template<>
-		struct unity<int>
+		struct identity<int>
 		{
 			static constexpr int v = 1;
 		};
 	template<>
-		struct unity<float>
+		struct identity<float>
 		{
 			static constexpr float v = 1.0f;
 		};
 	template<>
-		struct unity<double>
+		struct identity<double>
 		{
 			static constexpr double v = 1.0;
 		};
@@ -81,14 +81,14 @@ namespace metamath
 		return true;
 	}
 	
-	constexpr bool is_unity(int v) 
+	constexpr bool is_identity(int v) 
 	{
-		return v == unity<int>::v;
+		return v == identity<int>::v;
 	}
 	template<typename T>
-	constexpr bool is_unity(T v)
+	constexpr bool is_identity(T v)
 	{
-		return is_zero<T>(std::abs(v - unity<T>::v));
+		return is_zero<T>(std::abs(v - identity<T>::v));
 	}
 
 	// checks for exp<>
@@ -122,10 +122,10 @@ namespace metamath
 	
 
 			//allow exp<> types only
-	template<typename ...T> struct is_unity_t;
+	template<typename ...T> struct is_identity_t;
 
 	template<typename ...T>
-	struct is_unity_t<exp<T...>>
+	struct is_identity_t<exp<T...>>
 	{
 		typedef exp<T...> exp_t;
 		static constexpr bool check(const exp_t&)
@@ -134,7 +134,7 @@ namespace metamath
 		}
 	};
 	template<typename T>
-	struct is_unity_t<exp<T, empty, constant>>
+	struct is_identity_t<exp<T, empty, constant>>
 	{
 		typedef exp<T, empty, constant> exp_t;
 		static constexpr bool check(const exp_t& e)
@@ -143,9 +143,9 @@ namespace metamath
 		}
 	};
 	template<typename T>
-	constexpr bool is_unity_const(const T& e)
+	constexpr bool is_identity_const(const T& e)
 	{
-		return is_unity_t<T>::check(e);
+		return is_identity_t<T>::check(e);
 	}
 
 	// expression specializations
@@ -157,12 +157,12 @@ namespace metamath
 
 		T v_;
 		bool z_; //indicates zero
-		bool u_; //indicates unity
+		bool u_; //indicates identity
 
 		exp(T v) 
 			:v_{v} 
 			,z_{is_zero(v)}
-			,u_{is_unity(v)}
+			,u_{is_identity(v)}
 		{
 		}
 
@@ -212,7 +212,7 @@ namespace metamath
 		template<typename V>
 		constexpr decltype(e1_(V{}) / e2_(V{})) operator()(V v) const
 		{
-			if (is_unity_const(e2_)) {
+			if (is_identity_const(e2_)) {
 				return e1_(v);
 			}
 			return e1_(v) / e2_(v);
@@ -221,7 +221,7 @@ namespace metamath
 		template<typename Os>
 		Os& print(Os& os) const
 		{
-			if (is_unity_const(e2_)) {
+			if (is_identity_const(e2_)) {
 				os << e1_;
 				return os;
 			}
@@ -242,10 +242,10 @@ namespace metamath
 			if (is_zero_const(e1_) || is_zero_const(e2_)) {
 				return zero<V>::v;
 			}
-			if (is_unity_const(e1_)) {
+			if (is_identity_const(e1_)) {
 				return e2_(v);
 			}
-			if (is_unity_const(e2_)) {
+			if (is_identity_const(e2_)) {
 				return e1_(v);
 			}
 			return e1_(v) * e2_(v);
@@ -254,11 +254,11 @@ namespace metamath
 		template<typename Os>
 		Os& print(Os& os) const
 		{
-			if (is_unity_const(e1_)) {
+			if (is_identity_const(e1_)) {
 				os << e2_;
 				return os;
 			}
-			if (is_unity_const(e2_)) {
+			if (is_identity_const(e2_)) {
 				os << e1_;
 				return os;
 			}

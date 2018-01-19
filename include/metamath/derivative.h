@@ -29,7 +29,7 @@ namespace metamath
 
 			auto operator()(const vexp&)
 			{
-				return exp<E, empty, constant>{unity<E>::v};
+				return exp<E, empty, constant>{identity<E>::v};
 			}
 		};
 
