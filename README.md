@@ -4,7 +4,7 @@ Meta mathematic
 metamath is a tiny header-only library. It can be used for symbolic computations on single-variable functions, such as dynamic computations of derivatives. The operator precedence rules are naturally handled by the compiler. The library could be useful for building custom DSL's in C++.
 
 func.h contains definitions for some of the cmath functions: Sin/Cos, Ln, Pow, Abs, Sqrt, Exp, more to come...
-Function composition is supported:
+Arithmetic with functions are supported:
 
 	auto f1 = 3 * x;
 	auto f2 = Ln(x);
@@ -13,7 +13,7 @@ Function composition is supported:
 	auto y1 = f(2);
 	auto y2 = f(4);
 
-as well as chaining.
+as well as function composition.
 
 	auto f = Ln(x);
 	auto g = 3 * x;
