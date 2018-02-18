@@ -171,6 +171,11 @@ namespace metamath
 		{
 			return v_;
 		}
+		template<typename E1, typename E2, typename Op>
+		constexpr auto operator()(const exp<E1, E2, Op>& e)
+		{
+			return *this;
+		}
 
 		template<typename Os>
 		Os& print(Os& os) const
@@ -190,6 +195,12 @@ namespace metamath
 		{
 			return v;
 		}
+		template<typename E1, typename E2, typename Op>
+		constexpr exp<E1, E2, Op> operator()(const exp<E1, E2, Op>& e)
+		{
+			return e;
+		}
+
 
 		template<typename Os>
 		Os& print(Os& os) const
@@ -216,6 +227,11 @@ namespace metamath
 				return e1_(v);
 			}
 			return e1_(v) / e2_(v);
+		}
+		template<typename T1, typename T2, typename Op>
+		constexpr auto operator()(const exp<T1, T2, Op>& e)
+		{
+			return e1_(e) / e2_(e);
 		}
 
 		template<typename Os>
@@ -250,6 +266,11 @@ namespace metamath
 			}
 			return e1_(v) * e2_(v);
 		}
+		template<typename T1, typename T2, typename Op>
+		constexpr auto operator()(const exp<T1, T2, Op>& e)
+		{
+			return e1_(e) * e2_(e);
+		}
 
 		template<typename Os>
 		Os& print(Os& os) const
@@ -279,6 +300,11 @@ namespace metamath
 		{
 			return e1_(v) + e2_(v);
 		}
+		template<typename T1, typename T2, typename Op>
+		constexpr auto operator()(const exp<T1, T2, Op>& e)
+		{
+			return e1_(e) + e2_(e);
+		}
 
 		template<typename Os>
 		Os& print(Os& os) const
@@ -307,6 +333,11 @@ namespace metamath
 		constexpr decltype(e1_(V{}) - e2_(V{})) operator()(V v) const
 		{
 			return e1_(v) - e2_(v);
+		}
+		template<typename T1, typename T2, typename Op>
+		constexpr auto operator()(const exp<T1, T2, Op>& e)
+		{
+			return e1_(e) - e2_(e);
 		}
 
 		template<typename Os>

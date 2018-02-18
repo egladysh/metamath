@@ -36,6 +36,11 @@ namespace metamath
 		{
 			return sin_f{}(e_(v));
 		}
+		template<typename T1, typename T2, typename Op>
+		constexpr auto operator()(const exp<T1, T2, Op>& e)
+		{
+			return exp<decltype(e_(e)), sin_f, func>{e_(e)};
+		}
 
 		template<typename Os>
 		Os& print(Os& os) const
@@ -59,6 +64,11 @@ namespace metamath
 		auto operator()(V v) const
 		{
 			return cos_f{}(e_(v));
+		}
+		template<typename T1, typename T2, typename Op>
+		constexpr auto operator()(const exp<T1, T2, Op>& e)
+		{
+			return exp<decltype(e_(e)), cos_f, func>{e_(e)};
 		}
 
 		template<typename Os>
@@ -107,6 +117,11 @@ namespace metamath
 		auto operator()(V v) const
 		{
 			return sqrt_f{}(e_(v));
+		}
+		template<typename T1, typename T2, typename Op>
+		constexpr auto operator()(const exp<T1, T2, Op>& e)
+		{
+			return exp<decltype(e_(e)), sqrt_f, func>{e_(e)};
 		}
 
 		template<typename Os>
@@ -161,11 +176,16 @@ namespace metamath
 		{
 			return pow_f<N>{}(e_(v));
 		}
+		template<typename T1, typename T2, typename Op>
+		constexpr auto operator()(const exp<T1, T2, Op>& e)
+		{
+			return exp<decltype(e_(e)), pow_f<N>, func>{e_(e)};
+		}
 
 		template<typename Os>
 		Os& print(Os& os) const
 		{
-			os << "(" << e_ << "^" << N << ")";
+			os << "(" << e_ << ")^" << N;
 			return os;
 		}
 
@@ -204,6 +224,11 @@ namespace metamath
 		auto operator()(V v) const
 		{
 			return exponent_f{}(e_(v));
+		}
+		template<typename T1, typename T2, typename Op>
+		constexpr auto operator()(const exp<T1, T2, Op>& e)
+		{
+			return exp<decltype(e_(e)), exponent_f, func>{e_(e)};
 		}
 
 		template<typename Os>
@@ -246,6 +271,11 @@ namespace metamath
 		{
 			return ln_f{}(e_(v));
 		}
+		template<typename T1, typename T2, typename Op>
+		constexpr auto operator()(const exp<T1, T2, Op>& e)
+		{
+			return exp<decltype(e_(e)), ln_f, func>{e_(e)};
+		}
 
 		template<typename Os>
 		Os& print(Os& os) const
@@ -287,6 +317,11 @@ namespace metamath
 		auto operator()(V v) const
 		{
 			return abs_f{}(e_(v));
+		}
+		template<typename T1, typename T2, typename Op>
+		constexpr auto operator()(const exp<T1, T2, Op>& e)
+		{
+			return exp<decltype(e_(e)), abs_f, func>{e_(e)};
 		}
 
 		template<typename Os>

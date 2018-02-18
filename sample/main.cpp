@@ -162,5 +162,23 @@ int main()
 		std::cout << "======" << std::endl << std::endl;
 	}
 	
+	{
+		std::cout << "======" << std::endl;
+		auto f = Ln(x);
+		std::cout << "f(x) = " << f << std::endl;
+		auto g = 3 * x;
+		std::cout << "g(x) = " << g << std::endl;
+
+		auto h = f(g);
+		std::cout << "h(x) = f(g(x)) = " << h << std::endl;
+		std::cout << "h(4) = " << h(4.f) << std::endl;
+		std::cout << "------" << std::endl;
+
+		auto dh = derivative(h);
+		std::cout << "h`(x) = " << dh << std::endl;
+		std::cout << "h`(4) = " << dh(4.f) << std::endl;
+		std::cout << "======" << std::endl << std::endl;
+	}
+
 	return 0;
 }
